@@ -49,6 +49,11 @@ while (count <= gridWidth * gridWidth) {
 // Add queries for all your squares, palette colors, and brush here.
 // (Note the singular or plural used in that sentence!)
 
+const palette = document.querySelector('.palette');
+
+const brush = document.querySelector('.brush-icon');
+
+const canvas = document.querySelector('.canvas');
 
 
 /****************************
@@ -61,7 +66,25 @@ while (count <= gridWidth * gridWidth) {
 // run as event listeners (after the next step is set up) isn't a
 // bad idea for testing purposes.
 
+palette.addEventListener('click', function (event) {
+  const paletteColorElement = event.target;
+  const brushElement = document.querySelector('.current-brush');
 
+  const oldColorClass = brushElement.classList[1];
+  const newColorClass = paletteColorElement.classList[1];
+
+  brushElement.classList.replace(oldColorClass, newColorClass);
+});
+
+canvas.addEventListener('mouseenter', function () {
+  const canvasSquare = document.querySelector('.square');
+  const brushColor = document.querySelector('.current-brush');
+
+  const oldColor = canvasSquare.classList[1];
+  const newColor = brushColor.classList[1];
+
+  canvasSquare.classList.replace(oldColor, newColor);
+});
 
 /**************************
  * WIRING IT ALL TOGETHER *
